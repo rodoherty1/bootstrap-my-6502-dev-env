@@ -45,5 +45,5 @@
   with_items:
     - '{{ EXTRACT_VICEDATA_TARGET_DIR }}' 
     - '{{ DOWNLOAD_VICEDATA_ARCHIVE }}'
-    - '{{ DOWNLOAD_VSCODE_DIR }}'
+    - '{{ DOWNLOAD_VICEDATA_DIR }}'
 
