@@ -4,6 +4,12 @@
     path: "{{ EXTRACT_VICEDATA_TARGET_DIR }}"
     state: directory
     mode: '0755'
+
+- name: "Create directory {{ DOWNLOAD_VICEDATA_DIR }}"
+  file:
+    path: "{{ DOWNLOAD_VICEDATA_DIR }}"
+    state: directory
+    mode: '0755'
        
 - name: Install compiler and vice
   apt:
@@ -39,4 +45,5 @@
   with_items:
     - '{{ EXTRACT_VICEDATA_TARGET_DIR }}' 
     - '{{ DOWNLOAD_VICEDATA_ARCHIVE }}'
+    - '{{ DOWNLOAD_VSCODE_DIR }}'
 
