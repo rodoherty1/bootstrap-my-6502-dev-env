@@ -22,6 +22,7 @@
   snap:
     name: code
     classic: yes
+  become: true
 
 - name: Git clone acme-assembly-vscode-template
   git:
