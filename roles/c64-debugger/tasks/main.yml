@@ -1,0 +1,25 @@
+---
+- name: Add C64Debugger to PATH
+  lineinfile:
+    path: ~/shellenv.sh
+    line: "export PATH=:$TOOLS_DIR/C64Debugger"
+    state: present
+    insertbefore: "# END ANSIBLE MANAGED BLOCK"
+
+- name: Download c64 debugger
+  get_url:
+    url: http://csdb.dk/getinternalfile.php/174330/C64Debugger-v0.64.56-linux-x64.tar.gz 
+    dest: '{{ TOOLS_DIR }}/C64Debugger-v0.64.56-linux-x64.tar.gz'
+
+- name: Extract C64Debugger
+  unarchive:
+    src: '{{ TOOLS_DIR }}/C64Debugger-v0.64.56-linux-x64.tar.gz'
+    dest: '{{ TOOLS_DIR }}'
+
+- name: 'Cleanup downloaded archives'
+  file: 
+    path: '{{ item }}' 
+    state: absent
+  with_items:
+    - '{{ TOOLS_DIR }}/C64Debugger-v0.64.56-linux-x64.tar.gz'
+

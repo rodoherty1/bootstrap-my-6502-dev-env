@@ -1,0 +1,77 @@
+---
+- name: 'Create {{ TOOLS_DIR }}'
+  file:
+    path: '{{ TOOLS_DIR }}'
+    state: directory
+    mode: '0755'
+
+- name: Create ~/workspace
+  file:
+    path: ~/workspace
+    state: directory
+    mode: '0755'
+
+- name: Create "{{ shell_env_file }}"
+  file:
+      path: "{{ shell_env_file }}"
+      state: touch
+      mode: '0755'
+
+- name: "Add environment variables and utils to {{ shell_env_file }}"
+  blockinfile:
+    path: "{{ shell_env_file }}"
+    block: |
+      ns() {
+      NEW_SCRATCH_DIR=~/scratch/$(date +%b%d)
+      mkcdir $NEW_SCRATCH_DIR
+      touch $NEW_SCRATCH_DIR/scratch.txt
+      } 
+
+      mkcdir() {
+      mkdir -p -- "$1" && cd -P -- "$1"
+      }
+
+- name: 'Add lines to {{ shell_env_file }}'
+  lineinfile:
+    path: '{{ shell_env_file }}'
+    insertafter: 'BOF'
+    line: '{{ item }}'
+  with_items:
+    - alias today='cd ~/scratch/$(date +%b%d)'
+    - alias vi='vim'
+    - export TOOLS_DIR=~/tools
+    - NEW_SCRATCH_DIR=~/scratch/$(date +%b%d)
+
+- name: Add import shellenv to bashrc
+  lineinfile:
+    path: ~/.bashrc
+    insertbefore: 'BOF'
+    line: source {{ shell_env_file }}
+
+- name: Create vimrc
+  file:
+      path: '/home/{{ ansible_user_id }}/.vimrc'
+      state: touch
+      mode: '0755'
+
+- name: Add vimrc file
+  lineinfile:
+    path: '/home/{{ ansible_user_id }}/.vimrc'
+    insertafter: 'BOF'
+    line: '{{ item }}'
+  with_items:
+    - set number
+    - set background=dark
+
+- name: Install python3 pip and other libs
+  apt:
+    pkg:
+    - python3-pip 
+    state: present
+  become: true
+
+- name: Ensure pexpect is installed
+  pip:
+    name: ['pexpect']
+
+

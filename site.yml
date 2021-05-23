@@ -1,0 +1,12 @@
+---
+- hosts: all 
+  roles:
+    - role: 'roles/utilities'
+    - role: 'roles/setup-shell'
+    - role: 'roles/zsh-and-ohmyzsh'
+    - role: 'roles/vscode'
+    - role: 'roles/vice64'
+    - role: 'roles/c64-assemblers'
+    - role: 'roles/c64-debugger'
+    - role: 'roles/c64-examples'
+    - role: 'roles/chrome'

@@ -1,0 +1,28 @@
+---
+- name: Install python3 pip and other libs
+  apt:
+    pkg:
+    - python3-pip 
+    - libxcb-util-dev
+    state: present
+  become: true
+
+- name: Ensure boto and boto3 modules are installed
+  pip:
+    name: ['boto3', 'botocore']
+
+- name: 'Create softlink to libxcb-util.so.0'
+  file:
+    src: /lib/x86_64-linux-gnu/libxcb-util.so.1
+    dest: /lib/x86_64-linux-gnu/libxcb-util.so.0
+    state: link
+  become: true
+
+- name: Install C64 assemblers
+  apt:
+    pkg:
+    - cc65
+    - cc65-doc
+    - acme
+    state: present
+  become: true
