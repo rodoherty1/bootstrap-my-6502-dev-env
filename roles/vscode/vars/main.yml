@@ -1,5 +1,0 @@
----
-DOWNLOAD_VSCODE_DIR: "{{ TOOLS_DIR }}/vscode-download"
-DOWNLOAD_VSCODE_ARCHIVE: "{{ DOWNLOAD_VSCODE_DIR }}/vscode.tar.gz"
-SYMLINK: "{{ TOOLS_DIR }}/vscode"
-
