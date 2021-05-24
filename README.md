@@ -23,12 +23,15 @@ I have tested it with the 20.04 editions of Ubuntu Mate, Pop!OS and Kubuntu.
 ## Getting Started
 ### Enable passwordless sudo
 Launch `visudo`
+
     sudo visudo
 
 Add this line at the end of  the section that reads `# Allow members of group sudo to execute any command`
+
     <your_username>  ALL=(ALL) NOPASSWD:ALL
 
 For example:
+
     rob  ALL=(ALL) NOPASSWD:ALL
 
 ### Install git
@@ -39,6 +42,7 @@ For example:
 
 ### Run the setup script
 The `setup.sh` script will create an SSH key.  Note that this part of the setup will ask for your password in order to create it.
+
     cd bootstrap-my-linux-laptop
     ./setup.sh
 
