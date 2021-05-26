@@ -7,5 +7,5 @@
     - role: 'roles/vscode'
     - role: 'roles/vice64'
     - role: 'roles/c64-debugger'
-    - role: 'roles/c64-examples'
+    - role: 'roles/6502-examples'
     - role: 'roles/chrome'

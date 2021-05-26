@@ -9,6 +9,11 @@
     repo=https://github.com/rodoherty1/6502-Examples
     dest='{{ WORKSPACE_DIR }}/6502-Examples'
 
+- name: Git clone SlithyMatt/x16-assembly-tutorial
+  git:
+    repo=https://github.com/SlithyMatt/x16-assembly-tutorial
+    dest='{{ WORKSPACE_DIR }}/x16-assembly-tutorial'
+
 - name: "Create CC65 c64-adm.cfg link"
   file:
     src: /usr/share/cc65/cfg/c64-asm.cfg
