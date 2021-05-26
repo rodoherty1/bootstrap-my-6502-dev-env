@@ -1,11 +1,19 @@
 
-# Bootstrap your Ubuntu 6502 Dev Environment
+# Bootstrap my Ubuntu 6502 Development Environment
 
-## What does it do?
-This script installs the following on your Ubuntu OS:
+## What is it?
+This is how I quickly set up an Ubuntu 20.04 environment with many of the tools necessary to do some 6502 assembly development.
+
+The is a [setup.sh](setup.sh) script and an [Ansible](https://www.ansible.com/) playbook.
+
+The `setup.sh` script does the following:
+* Enables ssh
+* Creates an ssh key
+* Installs ansible
+* Installs python3
+
+You then run launch the ansible playbook (details below) which will install:
 * Google Chrome
-* Python3
-* Ansible
 * Zsh, OhMyZsh and a couple of plugins
 * Vim + minor customisations
 * Vice C64 Emulator
@@ -20,16 +28,24 @@ This script installs the following on your Ubuntu OS:
 ## What Ubuntu distributions does this work with?
 I have tested it with the 20.04 editions of Ubuntu Mate, Pop!OS and Kubuntu.
 
-## Getting Started
+## Getting started
 ### Enable passwordless sudo
-Launch `visudo`
-    sudo visudo
 
-Add this line at the end of  the section that reads `# Allow members of group sudo to execute any command`
-    <your_username>  ALL=(ALL) NOPASSWD:ALL
+Launch `visudo` as follows:
+* Launch a terminal
+* Type `sudo visudo`
+* Add this line at the end of  the section that reads `# Allow members of group sudo to execute any command`
 
-For example:
-    rob  ALL=(ALL) NOPASSWD:ALL
+      <your_username>  ALL=(ALL) NOPASSWD:ALL
+
+  For example:
+  
+      rob  ALL=(ALL) NOPASSWD:ALL
+
+* Type Ctrl+O to save.
+* Set the filename to `sudoers`, hit return and click Ctrl+X to exit.
+* Then close your terminal and relaunch it so that you now have passwordless sudo enabled.
+
 
 ### Install git
     sudo apt install -y git 
@@ -39,6 +55,7 @@ For example:
 
 ### Run the setup script
 The `setup.sh` script will create an SSH key.  Note that this part of the setup will ask for your password in order to create it.
+
     cd bootstrap-my-linux-laptop
     ./setup.sh
 
