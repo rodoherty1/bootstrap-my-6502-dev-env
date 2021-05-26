@@ -34,8 +34,8 @@
     repo=https://github.com/rodoherty1/6502-Examples
     dest='{{ WORKSPACE_DIR }}/6502-Examples'
 
-- name: Install Visual Studio Code extension - TonyLandi.acmecrossassembler
-  command: '/snap/bin/code --install-extension TonyLandi.acmecrossassembler'
+# - name: Install Visual Studio Code extension - TonyLandi.acmecrossassembler
+#   command: '/snap/bin/code --install-extension TonyLandi.acmecrossassembler'
 
 - name: Install Visual Studio Code extension - rosc.vs64
   command: '/snap/bin/code --install-extension rosc.vs64'

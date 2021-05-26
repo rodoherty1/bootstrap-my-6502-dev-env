@@ -2,7 +2,7 @@
 - name: Add C64Debugger to PATH
   lineinfile:
     path: ~/shellenv.sh
-    line: "export PATH=:$TOOLS_DIR/C64Debugger"
+    line: "export PATH=$PATH:$TOOLS_DIR/C64Debugger"
     state: present
     insertbefore: "# END ANSIBLE MANAGED BLOCK"
 

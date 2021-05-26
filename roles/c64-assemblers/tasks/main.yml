@@ -4,6 +4,7 @@
     pkg:
     - python3-pip 
     - libxcb-util-dev
+    - build-essential
     state: present
   become: true
 
@@ -21,8 +22,23 @@
 - name: Install C64 assemblers
   apt:
     pkg:
-    - cc65
-    - cc65-doc
     - acme
     state: present
   become: true
+
+- name: Git clone cc65
+  git:
+    repo=https://github.com/cc65/cc65.git
+    dest='{{ TOOLS_DIR }}/cc65'
+
+- name: Build CC65
+  command: 'make'
+  chdir: {{ TOOLS_DIR }}/cc65 
+
+- name: Add CC65 to PATH
+  lineinfile:
+    path: ~/shellenv.sh
+    line: "export PATH=$PATH:$TOOLS_DIR/cc65/bin"
+    state: present
+    insertbefore: "# END ANSIBLE MANAGED BLOCK"
+
