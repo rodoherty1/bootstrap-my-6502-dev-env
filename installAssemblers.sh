@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-playbook -u $USER installC64Assemblers.yml
+ansible-playbook -u $USER installAssemblers.yml

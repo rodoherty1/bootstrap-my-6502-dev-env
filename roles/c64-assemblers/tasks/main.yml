@@ -29,11 +29,12 @@
 - name: Git clone cc65
   git:
     repo=https://github.com/cc65/cc65.git
-    dest='{{ TOOLS_DIR }}/cc65'
+    dest="{{ TOOLS_DIR }}/cc65"
 
 - name: Build CC65
   command: 'make'
-  chdir: {{ TOOLS_DIR }}/cc65 
+  args:
+    chdir: "{{ TOOLS_DIR }}/cc65" 
 
 - name: Add CC65 to PATH
   lineinfile:
