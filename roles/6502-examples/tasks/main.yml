@@ -14,8 +14,8 @@
     repo=https://github.com/SlithyMatt/x16-assembly-tutorial
     dest='{{ WORKSPACE_DIR }}/x16-assembly-tutorial'
 
-- name: "Create CC65 c64-adm.cfg link"
-  file:
-    src: /usr/share/cc65/cfg/c64-asm.cfg
-    dest: '{{ WORKSPACE_DIR }}/6502-Examples/c64-adm.cfg'
-    state: link
+# - name: "Create CC65 c64-adm.cfg link"
+#   file:
+#     src: /usr/share/cc65/cfg/c64-asm.cfg
+#     dest: '{{ WORKSPACE_DIR }}/6502-Examples/c64-adm.cfg'
+#     state: link

@@ -24,16 +24,6 @@
     classic: yes
   become: true
 
-- name: Git clone acme-assembly-vscode-template
-  git:
-    repo=https://github.com/Esshahn/acme-assembly-vscode-template
-    dest='{{ WORKSPACE_DIR }}/acme-assembly-vscode-template'
-
-- name: Git clone OldSkoolCoder tutorials
-  git:
-    repo=https://github.com/rodoherty1/6502-Examples
-    dest='{{ WORKSPACE_DIR }}/6502-Examples'
-
 # - name: Install Visual Studio Code extension - TonyLandi.acmecrossassembler
 #   command: '/snap/bin/code --install-extension TonyLandi.acmecrossassembler'
 
