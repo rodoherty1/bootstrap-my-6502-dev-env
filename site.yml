@@ -8,5 +8,6 @@
     - role: 'roles/vice64'
     - role: 'roles/c64-debugger'
     - role: 'roles/6502-examples'
+    - role: 'roles/6502-assemblers'
     - role: 'roles/x16-emulator'
     - role: 'roles/chrome'
