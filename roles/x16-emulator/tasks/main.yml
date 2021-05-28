@@ -31,7 +31,7 @@
 - name: Copy X16 ROM to X16 path
   copy:
     src: "{{ TOOLS_DIR }}/x16-rom/build/x16/rom.bin"
-    dest: "{{ TOOLS_DIR }}/x16-commander/"
+    dest: "{{ TOOLS_DIR }}/x16-emulator/"
     remote_src: yes
   become: true
 
