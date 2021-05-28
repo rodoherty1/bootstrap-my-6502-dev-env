@@ -1,0 +1,42 @@
+---
+- name: Install libsdl2-dev
+  apt:
+    pkg:
+    - libsdl2-dev
+    state: present
+  become: true
+
+- name: Git clone X16 Emulator
+  git:
+    repo=https://github.com/commanderx16/x16-emulator
+    dest='{{ TOOLS_DIR }}/x16-emulator'
+
+- name: Git clone X16 Rom
+  git:
+    repo=https://github.com/commanderx16/x16-rom
+    dest='{{ TOOLS_DIR }}/x16-rom'
+
+- name: Build X16 Emulator
+  command: 'make'
+  args:
+    chdir: "{{ TOOLS_DIR }}/x16-emulator" 
+
+- name: Build X16 ROM
+  command: 'make'
+  args:
+    chdir: "{{ TOOLS_DIR }}/x16-rom" 
+
+- name: Add X16 Emulator to PATH
+  lineinfile:
+    path: ~/shellenv.sh
+    line: "export PATH=$PATH:$TOOLS_DIR/x16-emulator/"
+    state: present
+    insertbefore: "# END ANSIBLE MANAGED BLOCK"
+
+- name: Copy X16 ROM to X16 path
+  copy:
+    src: "{{ TOOLS_DIR }}/x16-rom/build/x16/rom.bin"
+    dest: "{{ TOOLS_DIR }}/x16-commander/"
+    remote_src: yes
+  become: true
+
