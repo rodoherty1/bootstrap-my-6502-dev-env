@@ -25,13 +25,8 @@
   command: 'make'
   args:
     chdir: "{{ TOOLS_DIR }}/x16-rom" 
-
-- name: Add X16 Emulator to PATH
-  lineinfile:
-    path: ~/shellenv.sh
-    line: "export PATH=$PATH:$TOOLS_DIR/x16-emulator/"
-    state: present
-    insertbefore: "# END ANSIBLE MANAGED BLOCK"
+  environment:
+    PATH: '{{ ansible_env.PATH }}:{{ TOOLS_DIR }}/cc65/bin'
 
 - name: Copy X16 ROM to X16 path
   copy:
@@ -39,4 +34,11 @@
     dest: "{{ TOOLS_DIR }}/x16-commander/"
     remote_src: yes
   become: true
+
+- name: Add X16 Emulator to PATH
+  lineinfile:
+    path: ~/shellenv.sh
+    line: "export PATH=$PATH:$TOOLS_DIR/x16-emulator/"
+    state: present
+    insertbefore: "# END ANSIBLE MANAGED BLOCK"
 
