@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "Updating and upgrading"
+sudo apt update
+sudo apt upgrade -y
+
 echo "Installing ansible, ssh and python3"
 sudo apt install -y ansible openssh-server python3
 

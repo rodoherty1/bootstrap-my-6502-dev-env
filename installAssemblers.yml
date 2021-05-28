@@ -1,4 +1,0 @@
----
-- hosts: all 
-  roles:
-    - role: 'roles/6502-assemblers'

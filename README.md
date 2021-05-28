@@ -13,20 +13,21 @@ The `setup.sh` script does the following:
 * Installs python3
 
 You then run launch the ansible playbook (details below) which will install:
-* Google Chrome
-* Zsh, OhMyZsh and a couple of plugins
-* Vim + minor customisations
+* Commander X16 Emulator
 * Vice C64 Emulator
 * CC65 6502 Assembler
-* ACME 6502 Assembler
 * C64 Debugger
 * Visual Studio Code
 * Some 6502 related VSCode extensions
 * Sample 6502 tutorials
-
+* Google Chrome
+* Zsh, OhMyZsh and a couple of plugins
+* Vim + minor customisations
 
 ## What Ubuntu distributions does this work with?
-I have tested it with the 20.04 editions of Ubuntu Mate, Pop!OS and Kubuntu.
+I have successfully tested it with the 20.04 editions of Ubuntu Mate, Pop!OS and Kubuntu.
+
+Elementary OS 5.1 does not work.
 
 ## Getting started
 ### Enable passwordless sudo
