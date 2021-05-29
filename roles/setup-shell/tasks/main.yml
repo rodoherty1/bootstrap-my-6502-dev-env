@@ -37,7 +37,7 @@
     insertafter: 'BOF'
     line: '{{ item }}'
   with_items:
-    - alias today='cd ~/scratch/$(date +%b%d)'
+    - alias today='mkdir -p ~/scratch/$(date +%b%d) && cd ~/scratch/$(date +%b%d)'
     - alias vi='vim'
     - export TOOLS_DIR=~/tools
     - NEW_SCRATCH_DIR=~/scratch/$(date +%b%d)
