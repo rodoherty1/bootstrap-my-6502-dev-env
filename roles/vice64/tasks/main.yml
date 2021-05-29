@@ -30,7 +30,7 @@
     dest: '{{ TOOLS_DIR }}'
 
 - name: Configure Vice
-  command: 'configure'
+  command: './configure'
   args:
     chdir: "{{ TOOLS_DIR }}/vice-3.5" 
 
@@ -40,26 +40,15 @@
     chdir: "{{ TOOLS_DIR }}/vice-3.5" 
   become: true
 
-# - name: Extract vice-data.tar.gz
-#   unarchive:
-#     src: "{{ DOWNLOAD_VICEDATA_ARCHIVE }}"
-#     dest: "{{ EXTRACT_VICEDATA_TARGET_DIR }}"
-#     list_files: yes
-#   register: archive_contents
+- name: Copy vice-data contents to /usr/lib/vice
+  copy:
+    src: "{{ TOOLS_DIR }}/vice-3.5/data/"
+    dest: /usr/lib/vice
+    remote_src: yes
+  become: true
 
-# - name: Copy vice-data contents to /usr/lib/vice
-#   copy:
-#     src: "{{ EXTRACT_VICEDATA_TARGET_DIR }}/data/"
-#     dest: /usr/lib/vice
-#     remote_src: yes
-#   become: true
-
-# - name: 'Cleanup downloaded archives'
+# - name: 'Remove downloaded vice-3.5.tar.gz'
 #   file: 
-#     path: '{{ item }}' 
+#     path: '{{ TOOLS_DIR }}/vice-3.5.tar.gz' 
 #     state: absent
-#   with_items:
-#     - '{{ EXTRACT_VICEDATA_TARGET_DIR }}' 
-#     - '{{ DOWNLOAD_VICEDATA_ARCHIVE }}'
-#     - '{{ DOWNLOAD_VICEDATA_DIR }}'
 
