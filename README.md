@@ -57,7 +57,7 @@ Launch `visudo` as follows:
 ### Run the setup script
 The `setup.sh` script will create an SSH key.  Note that this part of the setup will ask for your password in order to create it.
 
-    cd bootstrap-my-linux-laptop
+    cd bootstrap-my-6502-dev-env
     ./setup.sh
 
 ### Run the Ansible playbook
