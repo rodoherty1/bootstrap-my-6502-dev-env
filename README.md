@@ -60,8 +60,5 @@ The `setup.sh` script will create an SSH key.  Note that this part of the setup 
     cd bootstrap-my-linux-laptop
     ./setup.sh
 
-### Reboot
-    sudo reboot
-
 ### Run the Ansible playbook
     ansible-playbook -u $USER site.yml --extra-vars=password=<your_password>
