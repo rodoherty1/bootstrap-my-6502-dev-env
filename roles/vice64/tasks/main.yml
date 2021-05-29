@@ -29,6 +29,11 @@
     src: '{{ TOOLS_DIR }}/vice-3.5.tar.gz'
     dest: '{{ TOOLS_DIR }}'
 
+- name: Configure Vice
+  command: 'configure'
+  args:
+    chdir: "{{ TOOLS_DIR }}/vice-3.5" 
+
 - name: Build Vice
   command: 'make install'
   args:
