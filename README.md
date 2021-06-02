@@ -17,8 +17,8 @@ You then run launch the ansible playbook (details below) which will install:
 * Vice C64 Emulator
 * CC65 6502 Assembler
 * C64 Debugger
-* Visual Studio Code
-* Some 6502 related VSCode extensions
+* VSCode with 6502 language plugins
+* Atom editor with 6502 language support
 * Sample 6502 tutorials
 * Google Chrome
 * Zsh, OhMyZsh and a couple of plugins
