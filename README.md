@@ -4,7 +4,7 @@
 ## What is it?
 This is how I quickly set up an Ubuntu 20.04 environment with many of the tools necessary to do some 6502 assembly development.
 
-The is a [setup.sh](setup.sh) script and an [Ansible](https://www.ansible.com/) playbook.
+The is a [setup.sh](setup.sh) script and two [Ansible](https://www.ansible.com/) playbooks.
 
 The `setup.sh` script does the following:
 * Enables ssh
@@ -12,7 +12,7 @@ The `setup.sh` script does the following:
 * Installs ansible
 * Installs python3
 
-You then run launch the ansible playbook (details below) which will install:
+You then run launch the `site.yml` ansible playbook (details below) which will install:
 * Commander X16 Emulator
 * Vice C64 Emulator
 * CC65 6502 Assembler
@@ -21,8 +21,10 @@ You then run launch the ansible playbook (details below) which will install:
 * Atom editor with 6502 language support
 * Sample 6502 tutorials
 * Google Chrome
-* Zsh, OhMyZsh and a couple of plugins
 * Vim + minor customisations
+
+You may optionally launch the `zsh` ansible playbook (details below) to install:
+* Zsh, OhMyZsh and a couple of plugins
 
 ## What Ubuntu distributions does this work with?
 I have successfully tested it with the 20.04 editions of Ubuntu Mate, Pop!OS and Kubuntu.
@@ -47,7 +49,6 @@ Launch `visudo` as follows:
 * Set the filename to `sudoers`, hit return and click Ctrl+X to exit.
 * Then close your terminal and relaunch it so that you now have passwordless sudo enabled.
 
-
 ### Install git
     sudo apt install -y git 
 
@@ -60,5 +61,12 @@ The `setup.sh` script will create an SSH key.  Note that this part of the setup 
     cd bootstrap-my-6502-dev-env
     ./setup.sh
 
-### Run the Ansible playbook
-    ansible-playbook -u $USER site.yml --extra-vars=password=<your_password>
+### Run the `site.yml` Ansible playbook
+This playbook installs all 6520 assembly dev applications and plugins.
+
+    ansible-playbook -u $USER site.yml
+
+### (Optional) Run the `zsh.yml` Ansible playbook
+This playbook replaces the bash terminal with zsh and oh-my-zsh.
+
+    ansible-playbook -u $USER zsh.yml --extra-vars=password=<your_password>

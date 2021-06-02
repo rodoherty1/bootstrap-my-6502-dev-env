@@ -3,7 +3,6 @@
   roles:
     - role: 'roles/utilities'
     - role: 'roles/setup-shell'
-    - role: 'roles/zsh-and-ohmyzsh'
     - role: 'roles/vscode'
     - role: 'roles/atom-editor'
     - role: 'roles/vice64'
