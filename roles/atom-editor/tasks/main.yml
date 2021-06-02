@@ -1,0 +1,10 @@
+---
+- name: Install snap of Atom editor
+  snap:
+    name: atom
+    classic: yes
+  become: true
+
+- name: Install Atom support for 6502 Assembly
+  command: 'apm install language-65asm'
+
