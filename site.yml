@@ -5,6 +5,7 @@
     - role: 'roles/setup-shell'
     - role: 'roles/zsh-and-ohmyzsh'
     - role: 'roles/vscode'
+    - role: 'roles/atom-editor'
     - role: 'roles/vice64'
     - role: 'roles/c64-debugger'
     - role: 'roles/6502-examples'
