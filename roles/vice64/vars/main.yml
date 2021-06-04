@@ -1,6 +1,0 @@
----
-EXTRACT_VICEDATA_TARGET_DIR: "{{ TOOLS_DIR }}/vice-data"
-DOWNLOAD_VICEDATA_DIR: "{{ DOWNLOADS_DIR }}/vice-data/"
-DOWNLOAD_VICEDATA_ARCHIVE: "{{ DOWNLOAD_VICEDATA_DIR }}/vicedata.tar.gz"
-DOWNLOAD_VICE_URL: https://vscode-update.azurewebsites.net/latest/linux-x64/stable
-

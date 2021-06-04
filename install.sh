@@ -24,3 +24,5 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 2
 
 printf '2\n' | sudo update-alternatives --config python
 
+ansible-playbook -u $USER site.yml
+

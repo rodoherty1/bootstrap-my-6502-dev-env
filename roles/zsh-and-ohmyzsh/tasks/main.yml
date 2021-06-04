@@ -13,30 +13,17 @@
   git:
     repo=https://github.com/robbyrussell/oh-my-zsh
     dest=~/.oh-my-zsh
-#  when: installation|success
-#  register: cloning
-#  sudo: no
 
 - name: Creating new ~/.zshrc
   copy:
     src=~/.oh-my-zsh/templates/zshrc.zsh-template
     dest=~/.zshrc
-#  when: cloning|success
-#  sudo: no
-
-#- name: change user shell to zsh 
-#  become: yes
-#  user:
-#    name: "{{ the_user }}"
-#    shell: /usr/bin/zsh
 
 - name: Case insensitve password string match
   expect:
     command: "chsh -s /usr/bin/zsh"
     responses:
-      (?i)password: "{{ password }}"
-    #creates: ".shell_is_fish"
-
+#      (?i)password: "{{ password }}"
 
 ## NOTE: Yaml requires escaping backslashes in double quotes but not in single quotes
 #- name: Ensure git, docker and 
