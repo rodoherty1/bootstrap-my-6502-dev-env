@@ -1,0 +1,54 @@
+---
+
+- name: Install vice prerequisites
+  apt:
+    pkg:
+    - flex
+    - byacc
+    - dos2unix
+    - xa65
+    - texinfo
+    - texlive-latex-base
+    - texlive-fonts-recommended
+    - texlive-latex-extra
+    - libglib2.0-dev
+    - libsdl2-dev
+    - libsdl2-image-dev
+    - libpng-dev
+    state: present
+  become: true
+
+- name: Download vice3.5 source
+  get_url:
+    url: https://sourceforge.net/projects/vice-emu/files/releases/vice-3.5.tar.gz
+    dest: '{{ TOOLS_DIR }}/'
+    validate_certs: no
+
+- name: Extract vice3.5
+  unarchive:
+    src: '{{ TOOLS_DIR }}/vice-3.5.tar.gz'
+    dest: '{{ TOOLS_DIR }}'
+
+- name: Configure Vice
+  command: './configure'
+  args:
+    chdir: "{{ TOOLS_DIR }}/vice-3.5" 
+
+- name: Build Vice
+  command: 'make install'
+  args:
+    chdir: "{{ TOOLS_DIR }}/vice-3.5" 
+  become: true
+
+- name: Copy vice-data contents to /usr/lib/vice
+  copy:
+    src: "{{ TOOLS_DIR }}/vice-3.5/data/"
+    dest: /usr/lib/vice
+    remote_src: yes
+  become: true
+
+# - name: 'Remove downloaded vice-3.5.tar.gz'
+#   file: 
+#     path: '{{ TOOLS_DIR }}/vice-3.5.tar.gz' 
+#     state: absent
+

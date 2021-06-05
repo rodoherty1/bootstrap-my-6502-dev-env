@@ -1,0 +1,11 @@
+---
+  - name: Utilities
+    apt:
+      pkg:
+      - git
+      - vim
+      - tree
+      - xclip
+      - jq
+      state: present
+    become: true
