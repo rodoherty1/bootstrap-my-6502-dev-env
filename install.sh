@@ -3,22 +3,25 @@
 function install_6502_dev_env() {
   cd 6502
   ./install-6502-dev-env.sh
+  cd ../
 }
 
 function install_zsh() {
   cd zsh
   ./install-zsh.sh
+  cd ../
 }
 
 function bootstrap() {
   cd bootstrap
   ./bootstrap.sh
+  cd ../
 }
 
 function install_all() {
   bootstrap
-	install_6502_dev_env
-	install_zsh
+  install_6502_dev_env
+  install_zsh
 }
 
 ##
@@ -33,10 +36,10 @@ clear='\e[0m'
 ##
 
 ColorGreen(){
-	echo -ne $green$1$clear
+  echo -ne $green$1$clear
 }
 ColorBlue(){
-	echo -ne $blue$1$clear
+  echo -ne $blue$1$clear
 }
 
 menu(){
