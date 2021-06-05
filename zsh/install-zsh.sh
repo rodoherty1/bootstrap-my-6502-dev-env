@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd ../
-ansible-playbook -u $USER zsh.yml
+ansible-playbook -u $USER site.yml
