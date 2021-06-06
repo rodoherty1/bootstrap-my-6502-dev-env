@@ -46,19 +46,19 @@ menu(){
 echo -ne "
 My First Menu
 $(ColorGreen '1)') Bootstrap environment
-$(ColorGreen '2)') Install 502 Dev Environment
-$(ColorGreen '3)') Install ZSH
-$(ColorGreen '4)') Install all
+$(ColorGreen '2)') Install all
+$(ColorGreen '3)') Install 6502 Assembly Development Environment
+$(ColorGreen '4)') Install ZSH and Oh-my-zshell
 $(ColorGreen '0)') Exit
 $(ColorBlue 'Choose an option:') "
         read a
         case $a in
 	        1) bootstrap ; menu ;;
-	        2) install_6502_dev_env ; menu ;;
-	        3) install_zsh ; menu ;;
-	        4) install_all ; menu ;;
-		0) exit 0 ;;
-		*) echo -e $red"Wrong option."$clear; WrongCommand;;
+	        2) install_all ; menu ;;
+	        3) install_6502_dev_env ; menu ;;
+	        4) install_zsh ; menu ;;
+		      0) exit 0 ;;
+		*) echo -e $red"Unsupported option: "$clear; WrongCommand;;
         esac
 }
 
