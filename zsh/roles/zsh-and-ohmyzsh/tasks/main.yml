@@ -23,7 +23,7 @@
   expect:
     command: "chsh -s /usr/bin/zsh"
     responses:
-    (?i)password: "{{ password }}"
+      (?i)password: "{{ password }}"
 
 ## NOTE: Yaml requires escaping backslashes in double quotes but not in single quotes
 #- name: Ensure git, docker and 
