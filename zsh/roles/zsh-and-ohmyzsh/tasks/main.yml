@@ -1,61 +1,56 @@
 ---
-vars_prompt:
-  - name: password
-    prompt: What is your password?
+- name: Installing Zsh and git
+  become: true
+  apt: pkg=zsh state=latest
+#  register: installation
 
-tasks:
-  - name: Installing Zsh and git
-    become: true
-    apt: pkg=zsh state=latest
-  #  register: installation
+- name: Backing up existing ~/.zshrc
+  shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.orig; fi
+#  when: installation|success
+#  sudo: no
 
-  - name: Backing up existing ~/.zshrc
-    shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.orig; fi
-  #  when: installation|success
-  #  sudo: no
+- name: Cloning oh-my-zsh
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh
+    dest=~/.oh-my-zsh
 
-  - name: Cloning oh-my-zsh
-    git:
-      repo=https://github.com/robbyrussell/oh-my-zsh
-      dest=~/.oh-my-zsh
+- name: Creating new ~/.zshrc
+  copy:
+    src=~/.oh-my-zsh/templates/zshrc.zsh-template
+    dest=~/.zshrc
 
-  - name: Creating new ~/.zshrc
-    copy:
-      src=~/.oh-my-zsh/templates/zshrc.zsh-template
-      dest=~/.zshrc
+- name: Case insensitve password string match
+  expect:
+    command: "chsh -s /usr/bin/zsh"
+    responses:
+    (?i)password: "{{ password }}"
 
-  - name: Case insensitve password string match
-    expect:
-      command: "chsh -s /usr/bin/zsh"
-      responses:
-      (?i)password: "{{ password }}"
+## NOTE: Yaml requires escaping backslashes in double quotes but not in single quotes
+#- name: Ensure git, docker and 
+#  lineinfile:
+#    path: /opt/jboss-as/bin/standalone.conf
+#    regexp: '^plugins=\(.*\)'
+#    line: 'plugins=(git docker kubectl aws)'
+#    backrefs: yes
 
-  ## NOTE: Yaml requires escaping backslashes in double quotes but not in single quotes
-  #- name: Ensure git, docker and 
-  #  lineinfile:
-  #    path: /opt/jboss-as/bin/standalone.conf
-  #    regexp: '^plugins=\(.*\)'
-  #    line: 'plugins=(git docker kubectl aws)'
-  #    backrefs: yes
+- name: Add import shellenv to bashrc
+  lineinfile:
+    path: ~/.zshrc
+    insertbefore: 'BOF'
+    line: 'source {{ shell_env_file }}'
 
-  - name: Add import shellenv to bashrc
-    lineinfile:
-      path: ~/.zshrc
-      insertbefore: 'BOF'
-      line: 'source {{ shell_env_file }}'
+# NOTE: Yaml requires escaping backslashes in double quotes but not in single quotes
+- name: Install ZSH plugins for git, docker, kubectl and aws plugins
+  lineinfile:
+    path: '/home/{{ ansible_user_id }}/.zshrc'
+    regexp: '^plugins=\(.*\)'
+    line: 'plugins=(git docker kubectl aws)'
+    backrefs: yes
 
-  # NOTE: Yaml requires escaping backslashes in double quotes but not in single quotes
-  - name: Install ZSH plugins for git, docker, kubectl and aws plugins
-    lineinfile:
-      path: '/home/{{ ansible_user_id }}/.zshrc'
-      regexp: '^plugins=\(.*\)'
-      line: 'plugins=(git docker kubectl aws)'
-      backrefs: yes
-
-  - name: Install robbyrussell ZSHtheme
-    lineinfile:
-      path: '/home/{{ ansible_user_id }}/.zshrc'
-      regexp: '^ZSH_THEME=".*"'
-      line: 'ZSH_THEME="robbyrussell"'
+- name: Install robbyrussell ZSHtheme
+  lineinfile:
+    path: '/home/{{ ansible_user_id }}/.zshrc'
+    regexp: '^ZSH_THEME=".*"'
+    line: 'ZSH_THEME="robbyrussell"'
 
 
