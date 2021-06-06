@@ -1,4 +1,9 @@
 ---
+- name: Request password for current user
+  vars_prompt:
+    - name: password
+      prompt: What is your password?
+
 - name: Installing Zsh and git
   become: true
   apt: pkg=zsh state=latest
@@ -23,7 +28,7 @@
   expect:
     command: "chsh -s /usr/bin/zsh"
     responses:
-#      (?i)password: "{{ password }}"
+     (?i)password: "{{ password }}"
 
 ## NOTE: Yaml requires escaping backslashes in double quotes but not in single quotes
 #- name: Ensure git, docker and 
