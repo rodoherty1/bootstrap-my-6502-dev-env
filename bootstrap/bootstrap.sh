@@ -20,7 +20,6 @@ sudo cp ./hosts /etc/ansible/hosts
 
 echo "Installing python3"
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 2
 
 printf '2\n' | sudo update-alternatives --config python
 
