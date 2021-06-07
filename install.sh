@@ -44,7 +44,6 @@ ColorBlue(){
 
 menu(){
 echo -ne "
-My First Menu
 $(ColorGreen '1)') Bootstrap environment
 $(ColorGreen '2)') Install all
 $(ColorGreen '3)') Install 6502 Assembly Development Environment
